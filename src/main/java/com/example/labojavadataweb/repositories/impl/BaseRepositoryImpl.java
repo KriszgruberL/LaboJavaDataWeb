@@ -5,9 +5,10 @@ import com.example.labojavadataweb.repositories.BaseRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 public abstract class BaseRepositoryImpl<TKey, TEntity> implements BaseRepository<TKey, TEntity> {
 
@@ -37,7 +38,15 @@ public abstract class BaseRepositoryImpl<TKey, TEntity> implements BaseRepositor
 
 
     public abstract Class<TEntity> getClassName();
-    public abstract Set<TEntity> getMany();
+
+    public abstract List<TEntity> getMany();
+
+    public List<TEntity> getList(TypedQuery<TEntity> query) {
+        List<TEntity> list = query.getResultList();
+        System.out.println("Résultat(s) reçu : ");
+        list.forEach(System.out::println);
+        return list;
+    }
 
     @Override
     public void update(TEntity tEntity) {
