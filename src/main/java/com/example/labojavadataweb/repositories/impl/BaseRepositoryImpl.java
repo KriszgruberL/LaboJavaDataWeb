@@ -20,7 +20,6 @@ public abstract class BaseRepositoryImpl<TKey, TEntity> implements BaseRepositor
         this.em = emf.createEntityManager();
     }
 
-
     @Override
     public TEntity add(TEntity tEntity) {
         em.getTransaction().begin();
@@ -36,9 +35,7 @@ public abstract class BaseRepositoryImpl<TKey, TEntity> implements BaseRepositor
         return Optional.ofNullable(tEntity);
     }
 
-
     public abstract Class<TEntity> getClassName();
-
     public abstract List<TEntity> getMany();
 
     public List<TEntity> getList(TypedQuery<TEntity> query) {

@@ -2,11 +2,16 @@ package com.example.labojavadataweb.repositories.impl;
 
 import com.example.labojavadataweb.models.entities.User;
 import com.example.labojavadataweb.repositories.UserRepository;
+import jakarta.enterprise.context.SessionScoped;
+import jakarta.inject.Named;
 import jakarta.persistence.TypedQuery;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class UserRepositoryImpl extends BaseRepositoryImpl<Long, User> implements UserRepository {
+@Named
+@SessionScoped
+public class UserRepositoryImpl extends BaseRepositoryImpl<Long, User> implements UserRepository, Serializable {
 
 
     @Override
@@ -22,4 +27,14 @@ public class UserRepositoryImpl extends BaseRepositoryImpl<Long, User> implement
 
 
 
+    @Override
+    public User findByLogin(String login) {
+        TypedQuery<User> query = em.createQuery("select  u from User u where username = lower(u.username) or email = lower(u.email)", User.class);
+        query.setParameter("name", login);
+        query.setParameter("email", login);
+        User u = query.getSingleResult();
+        System.out.println(u);
+
+        return u;
+    }
 }
