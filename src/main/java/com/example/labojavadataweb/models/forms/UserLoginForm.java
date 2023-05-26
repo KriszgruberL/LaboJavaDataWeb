@@ -16,18 +16,15 @@ public class UserLoginForm {
 
     @NotBlank
     @Size(min = 1)
-    private String username;
+    private String login;
 
-//    @Email
-    private String email;
 
 //    @Password
     private String password;
 
     public User toEntity(){
         return User.builder()
-                .username(this.getUsername())
-                .email(this.getEmail())
+                .username(this.getLogin())
                 .password(this.password)
                 .build();
     }

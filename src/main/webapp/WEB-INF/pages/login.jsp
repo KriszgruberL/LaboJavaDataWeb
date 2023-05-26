@@ -18,14 +18,12 @@
 
 <jsp:include page="header.jsp"/>
 <form method="post" action="login">
-    <label for="username">Username : </label>
-    <input type="text" id="username" name="username" value="${username}">
-    <label for="email">Email : </label>
-    <input type="text" id="email" name="email" value="${email}">
+    <label for="login">Login : </label>
+    <input type="text" id="login" name="login" value="${login}">
+
     <label for="password">Password : </label>
     <input type="password" id="password" name="password">
-    <label for="confirmPassword">Confirm password : </label>
-    <input type="password" id="confirmPassword" name="confirmPassword">
+
     <span style="color: red">${errorMessage}</span>
     <button class="btn btn-dark" type="submit">Login</button>
 </form>
