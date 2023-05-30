@@ -1,6 +1,7 @@
 package com.example.labojavadataweb.services;
 
 import com.example.labojavadataweb.models.entities.User;
+import com.example.labojavadataweb.models.exceptions.InvalidPasswordUserException;
 import com.example.labojavadataweb.models.forms.UserRegisterForm;
 import com.example.labojavadataweb.repositories.UserRepository;
 import com.example.labojavadataweb.repositories.impl.UserRepositoryImpl;
@@ -8,9 +9,11 @@ import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.TypedQuery;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Named
 @SessionScoped
@@ -19,13 +22,9 @@ public class UserServiceImpl implements UserService,Serializable {
     @Inject
     private UserRepository userRepository;
 
-    public UserServiceImpl() {
-        this.userRepository = new UserRepositoryImpl();
-    }
     @Override
     public User login(User newUser) {
         String login = newUser.getUsername();
-
         User user = userRepository.findByLogin(login);
 
         if(user == null){
@@ -33,10 +32,12 @@ public class UserServiceImpl implements UserService,Serializable {
         }
 
         if (!BCrypt.checkpw(newUser.getPassword(), user.getPassword())) {
-            throw new RuntimeException();
+            throw new InvalidPasswordUserException();
         }
         return user;
     }
+
+
 
     @Override
     public User register(UserRegisterForm user) {

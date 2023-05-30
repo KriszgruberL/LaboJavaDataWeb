@@ -36,10 +36,11 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirmPassword");
-        UserRegisterForm userForm = new UserRegisterForm(username, email, password, confirmPassword);
+
+        UserRegisterForm userRegisterForm = new UserRegisterForm(username, email, password, confirmPassword);
 
         Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-        Set<ConstraintViolation<UserRegisterForm>> constraints = validator.validate(userForm);
+        Set<ConstraintViolation<UserRegisterForm>> constraints = validator.validate(userRegisterForm);
 
         if(constraints.size() > 0){
             for (ConstraintViolation<UserRegisterForm> constraint : constraints){
@@ -60,7 +61,7 @@ public class RegisterServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/pages/register.jsp").forward(request, response);
 
         } else {
-            User user = userService.register(userForm);
+            User user = userService.register(userRegisterForm);
             response.sendRedirect(request.getContextPath() + "/index.jsp");
         }
     }

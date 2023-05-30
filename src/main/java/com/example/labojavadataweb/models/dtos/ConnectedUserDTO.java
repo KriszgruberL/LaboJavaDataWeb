@@ -11,9 +11,7 @@ import lombok.*;
 public class ConnectedUserDTO {
 
     private Integer id;
-
     private String username;
-
     private String email;
 
     public static ConnectedUserDTO fromEntity(User user){

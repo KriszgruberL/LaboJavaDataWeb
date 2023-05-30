@@ -6,7 +6,7 @@
 </head>
 <body>
 <jsp:include page="WEB-INF/pages/header.jsp"/>
-<h2 class="text-center">Hello ${connectedUser.username}!</h2>
+<h2 class="text-center">Hello !</h2>
 
 <div class="row d-flex justify-content-lg-start align-items-lg m-2 h-100">
     <h5 class="fst-italic text-center ">Lorem Ipsum</h5>
@@ -21,7 +21,6 @@
             </figcaption>
         </figure>
     </div>
-
 
     <div class="card text-white bg-dark text-center w-75" style="border-radius: 15px; margin: 0 auto">
         <div class="card-body ">

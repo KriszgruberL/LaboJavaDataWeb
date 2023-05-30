@@ -13,7 +13,6 @@ import java.util.List;
 @SessionScoped
 public class UserRepositoryImpl extends BaseRepositoryImpl<Long, User> implements UserRepository, Serializable {
 
-
     @Override
     public Class<User> getClassName() {
         return User.class;
@@ -25,11 +24,9 @@ public class UserRepositoryImpl extends BaseRepositoryImpl<Long, User> implement
         return getList(query);
     }
 
-
-
     @Override
     public User findByLogin(String login) {
-        TypedQuery<User> query = em.createQuery("select  u from User u where username = lower(u.username) or email = lower(u.email)", User.class);
+        TypedQuery<User> query = em.createQuery("select  u from User u where username = lower(:name) or email = lower(:email)", User.class);
         query.setParameter("name", login);
         query.setParameter("email", login);
         User u = query.getSingleResult();
