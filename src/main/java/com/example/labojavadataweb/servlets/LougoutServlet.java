@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(name = "logout", urlPatterns = "/")
+@WebServlet(name = "logout", urlPatterns = "/logout")
 public class LougoutServlet extends HttpServlet {
 
 
@@ -17,6 +17,4 @@ public class LougoutServlet extends HttpServlet {
         request.getSession().invalidate();
         response.sendRedirect(request.getContextPath() + "/index.jsp");
     }
-
-
 }

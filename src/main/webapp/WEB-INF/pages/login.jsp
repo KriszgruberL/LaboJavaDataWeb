@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="fr">
@@ -8,17 +9,6 @@
     <title>Login</title>
 </head>
 <body>
-<%--<jsp:include page="header.jsp"/>--%>
-<%--<form method="post" action="login">--%>
-<%--    <label for="login">Login : </label>--%>
-<%--    <input type="text" id="login" name="login" value="${login}">--%>
-
-<%--    <label for="password">Password : </label>--%>
-<%--    <input type="password" id="password" name="password">--%>
-
-<%--    <span style="color: red">${errorMessage}</span>--%>
-<%--    <button class="btn btn-dark" type="submit">Login</button>--%>
-<%--</form>--%>
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -29,62 +19,65 @@
 <html>
 <head>
     <title>Login Page</title>
-    <!--Made with love by Mutiullah Samim -->
     <!--Bootsrap 4 CDN-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <!--Fontawesome CDN-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <!--Custom styles-->
-    <link rel="stylesheet" href="/styles/style.css">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--Custom styles-->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css">
 </head>
 <body>
-<div class="container">
-    <div class="d-flex justify-content-center h-100">
-        <div class="card">
-            <div class="card-header">
-                <h3>Sign In</h3>
-                <div class="d-flex justify-content-end social_icon">
-                    <span><i class="fab fa-facebook-square"></i></span>
-                    <span><i class="fab fa-google-plus-square"></i></span>
-                    <span><i class="fab fa-twitter-square"></i></span>
-                </div>
+<jsp:include page="header.jsp"/>
+<section class="vh-100">
+    <div class="container py-1 h-75 mt-2 mx-auto">
+        <div class="row d-flex align-items-center justify-content-center h-100 custom-image-placement">
+            <div class="col-md-8 col-lg-7 col-xl-6 image-column">
+                <img src="${pageContext.request.contextPath}/img/login_.jpg"
+                     class="img-fluid custom-rounded-right mx-auto d-block">
             </div>
-            <div class="card-body">
-                <form method="post" action="login">
-                    <div class="input-group form-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+            <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 form-column">
+                <form action="login" method="post">
+                    <h2 class="text-center fw-bold text-primary-emphasis mb-5">Sign in</h2>
+                    <!-- Login input -->
+                    <div class="form-outline mb-4">
+                        <input type="text" id="login" name="login" placeholder="Login" class="form-control form-control-lg" value="${login}"/>
+                        <span style="color: red">${errorMessage}</span>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <input type="password" id="password" name="password" placeholder="Password" class="form-control form-control-lg"/>
+                        <span style="color: red">${errorMessage}</span>
+                    </div>
+
+                    <div class="d-flex justify-content-around align-items-center mb-4">
+                        <!-- Checkbox -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked/>
+                            <label class="form-check-label" for="form1Example3"> Remember me </label>
                         </div>
-                        <input type="text" class="form-control" placeholder="login" id="login" name="login" value="${login}">
+                        <a href="#!" class="text-decoration-none fs-6 ">Forgot password?</a>
                     </div>
-                    <div class="input-group form-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-key"></i></span>
-                        </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" value="login" class="btn btn-primary btn-lg btn-block">Sign in</button>
+
+                    <div class="divider d-flex align-items-center my-4">
+                        <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
                     </div>
-                    <input type="password" id="password" name="password">
-                    <div class="row align-items-center remember">
-                        <input type="checkbox">Remember Me
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="Login" class="btn float-right login_btn">
-                    </div>
+
+                    <a class="btn btn-primary btn-lg btn-block" style="background-color: #3b5998" href="#!"
+                       role="button">
+                        <i class="fab fa-facebook-f me-2"></i> Continue with Facebook
+                    </a>
+                    <a class="btn btn-primary btn-lg btn-block" style="background-color: #55acee" href="#!"
+                       role="button">
+                        <i class="fab fa-linkedin me-2"></i> Continue with Linkedin</a>
                 </form>
-            </div>
-            <div class="card-footer">
-                <div class="d-flex justify-content-center links">
-                    Don't have an account?<a href="register.jsp">Sign Up</a>
-                </div>
-                <div class="d-flex justify-content-center">
-                    <a href="#">Forgot your password?</a>
-                </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 </body>
-</html>
 

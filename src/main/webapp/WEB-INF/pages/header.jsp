@@ -15,10 +15,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%--  <link rel="stylesheet" href="../../styles/style.css">--%>
+      <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css">
     <link href="
 https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css
 " rel="stylesheet">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <header>
 
@@ -33,7 +35,7 @@ https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="product.jsp">Products</a>
+                        <a class="nav-link" aria-current="page" href="product">Products</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -67,7 +69,7 @@ https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css
                     <c:if test="${connectedUser != null}">
                         <li class="nav-item">
                             <a class="nav-link" href="logout">
-                                <img src="../img/logout.png" alt="Logout" width="30" height="24">
+                                <img src="${pageContext.request.contextPath}/img/logout.png" alt="Logout" width="30" height="24">
                             </a>
                         </li>
                     </c:if>

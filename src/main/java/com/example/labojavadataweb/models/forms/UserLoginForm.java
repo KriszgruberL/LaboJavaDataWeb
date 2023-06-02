@@ -19,7 +19,7 @@ public class UserLoginForm {
     private String login;
 
 
-//    @Password
+    @Password
     private String password;
 
     public User toEntity(){

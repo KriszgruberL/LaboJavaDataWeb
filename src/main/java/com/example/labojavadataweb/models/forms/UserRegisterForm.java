@@ -18,14 +18,13 @@ public class UserRegisterForm {
     @Size(min = 1)
     private String username;
 
-    //TODO uncomment validator once testing is done
-//    @Email
+    @Email
     private String email;
 
-//    @Password
+    @Password
     private String password;
 
-//    @Password
+    @Password
     private String confirmPassword;
 
     public User toEntity(){
