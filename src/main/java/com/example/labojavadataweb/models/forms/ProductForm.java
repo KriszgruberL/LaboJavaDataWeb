@@ -29,6 +29,8 @@ public class ProductForm {
     private String imageUrl;
 
     public Product toEntity(){
+        Era eraValue = (era != null) ? Era.fromString(this.getEra()) : null;
+
         return Product.builder()
                 .productName(this.getProductName())
                 .productDescription(this.getProductDescription())
