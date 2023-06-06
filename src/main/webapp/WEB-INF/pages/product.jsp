@@ -1,6 +1,6 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -9,8 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <title>Product</title>
 </head>
@@ -19,20 +17,40 @@
 
 <div class="container">
     <button class="btn btn-dark" type="button" data-bs-toggle="modal"
-            data-bs-target="#addModal">
+            data-bs-target="#addProductModal">
         Add a product
     </button>
+
+    <h1> NTM </h1>
     <br>
     <br>
+
+
     <div class="row gy-3">
         <c:forEach items="${product}" var="product">
-            <h1>Yo</h1>
+
+            <div class="card">
+                <img src="${product.imageUrl}" class="card-img-top" alt="Product Image">
+                <div class="card-body">
+                    <h3 class="card-title">${product.productName}</h3>
+                    <h4 class="card-title">${product.era.value}</h4>
+                    <h5 class="card-text">${product.type.value}</h5>
+                    <h2 class="card-text">${product.productPrice}</h2>
+
+                    <p class="card-text">${product.productDescription.length() > 50 ? product.productDescription.substring(0,50).concat("...") : product.productDescription}
+                    </p>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+
         </c:forEach>
     </div>
 </div>
 
-
+<jsp:include page="addProductModal.jsp"/>
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 </html>

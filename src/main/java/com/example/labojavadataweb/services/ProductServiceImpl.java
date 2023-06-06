@@ -1,6 +1,7 @@
 package com.example.labojavadataweb.services;
 
 import com.example.labojavadataweb.models.entities.Product;
+import com.example.labojavadataweb.models.forms.ProductForm;
 import com.example.labojavadataweb.repositories.ProductRepository;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Inject;
@@ -22,8 +23,8 @@ public class ProductServiceImpl implements ProductService, Serializable {
     }
 
     @Override
-    public Product add(Product product) {
-        return productRepository.add(product);
+    public Product add(ProductForm productForm) {
+        return productRepository.add(productForm.toEntity());
     }
 
     @Override

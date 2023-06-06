@@ -17,4 +17,3 @@
         <param-value>postgres</param-value>
     </context-param>
 </web-app>
-

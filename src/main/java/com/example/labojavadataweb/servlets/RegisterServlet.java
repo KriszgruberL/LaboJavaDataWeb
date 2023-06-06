@@ -1,10 +1,8 @@
 package com.example.labojavadataweb.servlets;
 
-import com.example.labojavadataweb.models.dtos.ConnectedUserDTO;
 import com.example.labojavadataweb.models.entities.User;
 import com.example.labojavadataweb.models.forms.UserRegisterForm;
 import com.example.labojavadataweb.services.UserService;
-import com.example.labojavadataweb.services.UserServiceImpl;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -36,8 +34,9 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirmPassword");
+        boolean isAdmin = request.getParameter("adminCheckbox") != null;
 
-        UserRegisterForm userRegisterForm = new UserRegisterForm(username, email, password, confirmPassword);
+        UserRegisterForm userRegisterForm = new UserRegisterForm(username, email, password, confirmPassword, isAdmin);
 
         Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
         Set<ConstraintViolation<UserRegisterForm>> constraints = validator.validate(userRegisterForm);
@@ -58,6 +57,7 @@ public class RegisterServlet extends HttpServlet {
             request.setAttribute("username",username);
             request.setAttribute("email", email);
             request.setAttribute("password", password);
+            request.setAttribute("admin", isAdmin);
             request.getRequestDispatcher("/WEB-INF/pages/register.jsp").forward(request, response);
 
         } else {

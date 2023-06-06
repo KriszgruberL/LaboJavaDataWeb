@@ -38,6 +38,10 @@
                     <div class="form-outline mb-4">
                         <input type="text" id="username" name="username" placeholder="Username" class="form-control form-control-lg" value="${username}"/>
                         <span style="color: red">${errorMessage}</span>
+                        <label for="admin" class="form-control form-control-lg">Admin ?</label>
+                        <input type="checkbox" id="admin" name="admin" checked="">
+
+
                     </div>
 
                     <!-- Email input -->
@@ -57,6 +61,8 @@
                         <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" class="form-control form-control-lg"/>
                         <span style="color: red">${errorMessage}</span>
                     </div>
+
+
 
                     <!-- Submit button -->
                     <button type="submit" value="register" class="btn btn-primary btn-lg btn-block">Sign in</button>

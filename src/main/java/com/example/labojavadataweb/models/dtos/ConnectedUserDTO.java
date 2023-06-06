@@ -13,12 +13,14 @@ public class ConnectedUserDTO {
     private Integer id;
     private String username;
     private String email;
+    private boolean admin;
 
     public static ConnectedUserDTO fromEntity(User user){
 
         return ConnectedUserDTO.builder()
                 .username(user.getUsername())
                 .email(user.getEmail())
+                .admin(user.isAdmin())
                 .build();
     }
 }

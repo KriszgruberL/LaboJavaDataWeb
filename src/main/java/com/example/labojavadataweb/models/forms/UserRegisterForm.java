@@ -27,12 +27,15 @@ public class UserRegisterForm {
     @Password
     private String confirmPassword;
 
+    private boolean admin;
+
     public User toEntity(){
 
         return User.builder()
                 .username(getUsername())
                 .email(getEmail())
                 .password(getPassword())
+                .admin(isAdmin())
                 .build();
     }
 }
