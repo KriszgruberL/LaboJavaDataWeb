@@ -21,7 +21,6 @@ body {
     height: 70vh;
 }
 
-
 @media (min-width: 992px) {
     .custom-image-placement .image-column {
         order: 2;

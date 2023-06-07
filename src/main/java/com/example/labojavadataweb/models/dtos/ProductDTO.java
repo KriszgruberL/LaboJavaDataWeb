@@ -21,6 +21,7 @@ public class ProductDTO {
     private BigDecimal productPrice;
     private Era era;
     private Type type;
+    private String imageUrl;
 
 
     public ProductDTO(String productName, String productDescription, BigDecimal productPrice, Era era, Type type) {
@@ -50,6 +51,7 @@ public class ProductDTO {
                 .productPrice(product.getProductPrice())
                 .era(product.getEra())
                 .type(product.getType())
+                .imageUrl(product.getImageUrl())
                 .build();
     }
 }

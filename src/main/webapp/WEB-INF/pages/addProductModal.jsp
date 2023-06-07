@@ -47,19 +47,19 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label for="imageUrl">Image URL:</label>
-                        <input type="text" class="form-control" id="imageUrl" name="imageUrl" placeholder="Enter image URL">
-                    </div>
+<%--                    <div class="form-group">--%>
+<%--                        <label for="imageUpload">Image URL:</label>--%>
+<%--                        <input type="text" class="form-control" id="imageUpload" name="imageUpload" placeholder="Enter image URL">--%>
+<%--                    </div>--%>
 
 <%--                    <div class="divider d-flex align-items-center my-4">--%>
 <%--                        <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>--%>
 <%--                    </div>--%>
 
-<%--                    <div class="form-group">--%>
-<%--                        <label for="imageUpload">Image Upload:</label>--%>
-<%--                        <input type="file" class="form-control" id="imageUpload" name="imageUpload">--%>
-<%--                    </div>--%>
+                    <div class="form-group">
+                        <label for="imageUpload">Image Upload:</label>
+                        <input type="file" class="form-control" id="imageUpload" name="imageUpload">
+                    </div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

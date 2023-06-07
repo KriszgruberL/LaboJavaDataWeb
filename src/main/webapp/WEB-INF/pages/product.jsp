@@ -21,14 +21,12 @@
         Add a product
     </button>
 
-    <h1> NTM </h1>
-    <br>
-    <br>
+    <c:forEach items="${product}" var="product" varStatus="loop">
+        <c:if test="${loop.index % 3 == 0}">
+            <div class="row gy-3">
+        </c:if>
 
-
-    <div class="row gy-3">
-        <c:forEach items="${product}" var="product">
-
+        <div class="col-md-4">
             <div class="card">
                 <img src="${product.imageUrl}" class="card-img-top" alt="Product Image">
                 <div class="card-body">
@@ -36,14 +34,16 @@
                     <h4 class="card-title">${product.era.value}</h4>
                     <h5 class="card-text">${product.type.value}</h5>
                     <h2 class="card-text">${product.productPrice}</h2>
-
-                    <p class="card-text">${product.productDescription.length() > 50 ? product.productDescription.substring(0,50).concat("...") : product.productDescription}
-                    </p>
+                    <p class="card-text">${product.productDescription.length() > 50 ? product.productDescription.substring(0,50).concat("...") : product.productDescription}</p>
                     <a href="#" class="btn btn-primary">View Details</a>
                 </div>
             </div>
+        </div>
 
-        </c:forEach>
+        <c:if test="${(loop.index + 1) % 3 == 0 || loop.last}">
+            </div>
+        </c:if>
+    </c:forEach>
     </div>
 </div>
 

@@ -38,10 +38,10 @@
                     <div class="form-outline mb-4">
                         <input type="text" id="username" name="username" placeholder="Username" class="form-control form-control-lg" value="${username}"/>
                         <span style="color: red">${errorMessage}</span>
-                        <label for="admin" class="form-control form-control-lg">Admin ?</label>
-                        <input type="checkbox" id="admin" name="admin" checked="">
-
-
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="admin"/>
+                            <label class="form-check-label" for="admin"> Admin ? </label>
+                        </div>
                     </div>
 
                     <!-- Email input -->

@@ -30,6 +30,7 @@ public class ProductForm {
 
     public Product toEntity(){
         Era eraValue = (era != null) ? Era.fromString(this.getEra()) : null;
+        Type typeValue = (type != null) ? Type.fromString(this.getType()) : null;
 
         return Product.builder()
                 .productName(this.getProductName())

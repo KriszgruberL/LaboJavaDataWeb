@@ -5,6 +5,7 @@ import com.example.labojavadataweb.models.forms.ProductForm;
 import com.example.labojavadataweb.services.ProductService;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,8 +23,10 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 @WebServlet(name = "addProduct", urlPatterns = "/addProduct")
+@MultipartConfig
 public class AddProductServlet extends HttpServlet {
 
     @Inject
@@ -50,16 +53,15 @@ public class AddProductServlet extends HttpServlet {
 //        BigDecimal productPrice = new BigDecimal(request.getParameter("productPrice"));
         String productEra = request.getParameter("era");
         String productType = request.getParameter("type");
-        String imageUrl = request.getParameter("imageUrl");
-//        Part filePart = request.getPart("imageUpload");
-//        String fileName = filePart.getSubmittedFileName();
-//        String filePath = "img/"  + fileName;
-//
-//        try (InputStream fileContent = filePart.getInputStream()) {
-//            Files.copy(fileContent, Paths.get(filePath), StandardCopyOption.REPLACE_EXISTING);
-//        }
+        Part filePart = request.getPart("imageUpload");
+        String fileName = generateUniqueFileName(filePart);
+        String filePath = "C:\\Users\\studentdev02\\Desktop\\Technifutur\\Java\\JavaData-JavaWeb\\LaboJavaDataWeb\\src\\main\\webapp\\img\\" + fileName;
 
-        ProductForm productForm = new ProductForm(productName, productDescription, productPrice,productEra,productType,imageUrl);
+        try (InputStream fileContent = filePart.getInputStream()) {
+            Files.copy(fileContent, Paths.get(filePath), StandardCopyOption.REPLACE_EXISTING);
+        }
+
+        ProductForm productForm = new ProductForm(productName, productDescription, productPrice,productEra,productType,filePath);
 
         Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
         Set<ConstraintViolation<ProductForm>> constraints = validator.validate(productForm);
@@ -91,12 +93,19 @@ public class AddProductServlet extends HttpServlet {
             request.setAttribute("productPrice", productPrice);
             request.setAttribute("era", productEra);
             request.setAttribute("type", productType);
-            request.setAttribute("imageUrl", imageUrl);
+            request.setAttribute("filePath", filePath);
 
             request.getRequestDispatcher("/WEB-INF/pages/product.jsp").forward(request, response);
         } else {
             Product product = productService.add(productForm);
             response.sendRedirect(request.getContextPath() + "/index.jsp");
         }
+    }
+
+    private String generateUniqueFileName(Part filePart) {
+        String originalFileName = filePart.getSubmittedFileName();
+        String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
+        String uniqueFileName = UUID.randomUUID().toString() + extension;
+        return uniqueFileName;
     }
 }
